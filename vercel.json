@@ -4,7 +4,9 @@
     { "src": "api/*.js", "use": "@vercel/node" }
   ],
   "rewrites": [
-    { "source": "/", "destination": "/api/index" }
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/", "destination": "/api/index" },
+    { "source": "/(.*)", "destination": "/api/index" }
   ]
 }
 
