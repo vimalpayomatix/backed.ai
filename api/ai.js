@@ -1,8 +1,11 @@
 const { generateAIResponse } = require('../services/aiService');
 
 module.exports = async function handler(req, res) {
+  if (req.method === 'GET') {
+    return res.status(200).json({ ok: true, route: '/api/ai', method: 'GET' });
+  }
   if (req.method !== 'POST') {
-    res.setHeader('Allow', ['POST']);
+    res.setHeader('Allow', ['GET', 'POST']);
     return res.status(405).json({ error: 'Method Not Allowed' });
   }
 
